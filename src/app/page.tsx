@@ -234,29 +234,19 @@ const EXPERIENCES: Experience[] = [
 ];
 
 const SKILLS: Record<string, string[]> = {
-  Languages: ["Python", "Java", "TypeScript", "JavaScript", "Go", "Solidity", "PHP", "C/C++", "SQL"],
-  "Frameworks & Libraries": [
-    "Next.js",
-    "React",
-    "Node.js",
-    "Flask",
-    "Flet",
-    "NumPy",
-    "SQLAlchemy",
-    "LangChain",
-    "MediaPipe",
-    "OpenCV",
+  "Programming & Databases": [
+    "Python", "C/C++", "C#", "Java", "JavaScript", "TypeScript",
+    "Go", "PHP", "HTML/CSS", "Haskell", "Prolog", "Solidity",
+    "MariaDB", "PostgreSQL", "MySQL", "Firestore",
+  ],
+  "Frameworks, AI & Libraries": [
+    "React", "Next.js", "TailwindCSS", "JavaFX", "Prisma ORM",
+    "Pandas", "Flet", "LangChain", "Gemini API", "Hugging Face",
+    "MediaPipe", "TensorFlow", "Flask", "FastAPI", "REST APIs", "OpenCV",
   ],
   "Tools & Infrastructure": [
-    "Docker",
-    "Git",
-    "PostgreSQL",
-    "MySQL",
-    "Maven",
-    "GCP",
-    "AWS",
-    "Linux",
-    "Figma",
+    "Git", "Docker", "Postman", "Cisco Packet Tracer",
+    "AWS", "Vercel", "CloudFlare", "Maven"
   ],
 };
 
