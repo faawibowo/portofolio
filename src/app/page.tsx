@@ -124,7 +124,7 @@ const PROJECTS: Project[] = [
     title: "Votely",
     description:
       "Decentralized e-voting platform built on Solidity smart contracts with real-time biometric verification using MediaPipe for secure, transparent elections.",
-    stack: ["Solidity", "Ethereum", "MediaPipe","OpenCV", "React"],
+    stack: ["Solidity", "Sepolia Testnet", "MediaPipe","OpenCV", "React"],
     github: "https://github.com/faawibowo/votely-platform",
   },
   {
