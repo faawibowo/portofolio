@@ -18,17 +18,24 @@ import {
   ChevronLeft,
   Menu,
   X,
+  Search,
+  LayoutGrid,
+  Layers,
 } from "lucide-react";
 import Background from "@/components/Background";
 
 /* ─────────────────────────── helpers ─────────────────────────── */
 
 const fadeSlide = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 16 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.15, ease: [0.25, 0.1, 0.25, 1] as const },
+    transition: {
+      delay: i * 0.08,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
   }),
 };
 
@@ -42,7 +49,7 @@ function Section({
   className?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
     <motion.section
@@ -52,6 +59,7 @@ function Section({
       animate={inView ? "visible" : "hidden"}
       variants={fadeSlide}
       custom={0}
+      style={{ willChange: "opacity, transform" }}
       className={`relative ${className}`}
     >
       {children}
@@ -109,16 +117,35 @@ const PROJECTS: Project[] = [
     badge: "3rd Place — UNPAD IFEST 2025",
     description:
       "AI-integrated Contract Lifecycle Management (CLM) system with RAG-based Indonesian law assessment for automated legal compliance checking.",
-    stack: ["Next.js", "LangChain", "RAG", "Python", "TypeScript"],
+    stack: ["Next.js", "LangChain", "RAG", "TypeScript", "TailwindCSS"],
     github: "https://github.com/faawibowo/PAKTA",
   },
   {
     title: "Votely",
     description:
       "Decentralized e-voting platform built on Solidity smart contracts with real-time biometric verification using MediaPipe for secure, transparent elections.",
-    stack: ["Solidity", "Ethereum", "MediaPipe", "React", "Web3.js"],
+    stack: ["Solidity", "Ethereum", "MediaPipe","OpenCV", "React"],
     github: "https://github.com/faawibowo/votely-platform",
   },
+  {
+  title: "Apacy - Mini DBMS",
+  description:
+    "Comprehensive modular database management system built from scratch in Java, featuring a custom storage engine with B+ Tree indexing, heuristic-based query optimization, and robust failure recovery mechanisms.",
+  stack: ["Java", "Maven", "SQL", "DBMS", "Concurrency Control"],
+  github: "https://github.com/faawibowo/apacy", 
+},
+{
+  title: "Resume Search Engine",
+  description:
+  "Advanced resume search application implementing KMP, Boyer-Moore, and Aho-Corasick algorithms for efficient multi-pattern string matching across PDF databases. Features automated text extraction, a modern Flet-based GUI, and performance benchmarking for algorithm comparison.",
+  stack: ["Python", "Flask", "Flet", "MySQL", "Pattern Matching"],
+  github: "https://github.com/faawibowo/tubes3_farrelcarry"
+},
+{title: "Dompetin - Personal Finance Manager",
+description:
+"Comprehensive cross-platform financial tracking application built with Flet and Python. Features include dynamic expense and income categorization, budget management, visual financial analytics via interactive charts, and a responsive mobile-first UI for real-time personal accounting.",
+stack: ["Python", "Flet", "Pydantic", "SQLAlchemy", "Data Visualization"],
+github: "https://github.com/faawibowo/if2150-2024-k03-g01-dompetin"},
   {
     title: "Scholar Classifier",
     description:
@@ -132,6 +159,34 @@ const PROJECTS: Project[] = [
       "Full-stack e-commerce platform with hybrid PHP MVC backend, Node.js microservices, and a React frontend supporting real-time auction bidding.",
     stack: ["PHP", "Node.js", "React", "WebSocket", "Docker"],
     github: "https://github.com/faawibowo/Nimonspedia",
+  },{
+    title: "Quadtree Image Compressor",
+    description:
+    "High-performance image compression tool utilizing the Quadtree data structure to achieve lossy compression through recursive spatial partitioning. Features adjustable error thresholds, real-time compression statistics, and automated GIF generation to visualize the iterative refinement process.",
+    stack: ["Java", "AWT", "Swing", "Image Processing", "Quadtree"],
+    github: "https://github.com/faawibowo/tucil2_13523153_18222130"
+  }
+  ,
+  {
+    title: "Automatic Class Scheduler",
+    description:
+      "Python-based engine that optimizes academic timetables using Local Search algorithms — Hill-Climbing, Simulated Annealing, and Genetic Algorithms — built from scratch. Resolves complex resource constraints to ensure conflict-free scheduling for rooms and lecturers.",
+    stack: ["Python", "Hill-Climbing", "Simulated Annealing", "Genetic Algorithm"],
+    github: "https://github.com/faawibowo/tubes1-ai",
+  },
+  {
+    title: "Rush Hour Puzzle Solver",
+    description:
+      "Java solver for the Rush Hour sliding block puzzle implementing and comparing Uniform Cost Search, Greedy Best First Search, and A* Search algorithms to find the optimal sequence of moves.",
+    stack: ["Java", "UCS", "GBFS", "A* Search", "Pathfinding"],
+    github: "https://github.com/faawibowo/Tucil3_RushHour",
+  },
+  {
+    title: "Gopher: Little Alchemy Finder",
+    description:
+      "Web Scraper written in Go to automate extraction and data collection from external sources, paired with a DFS and BFS solver that identifies the most efficient element combination paths in Little Alchemy.",
+    stack: ["Go", "Web Scraping", "DFS", "BFS", "TypeScript"],
+    github: "https://github.com/faawibowo/Tubes2_Gopher",
   },
 ];
 
@@ -179,18 +234,30 @@ const EXPERIENCES: Experience[] = [
 ];
 
 const SKILLS: Record<string, string[]> = {
-  Languages: ["Python", "TypeScript", "JavaScript", "Go", "Solidity", "C/C++", "PHP", "SQL"],
-  "Frameworks & AI": [
+  Languages: ["Python", "Java", "TypeScript", "JavaScript", "Go", "Solidity", "PHP", "C/C++", "SQL"],
+  "Frameworks & Libraries": [
     "Next.js",
     "React",
-    "TensorFlow",
-    "LangChain",
-    "Hugging Face",
     "Node.js",
-    "Express",
     "Flask",
+    "Flet",
+    "NumPy",
+    "SQLAlchemy",
+    "LangChain",
+    "MediaPipe",
+    "OpenCV",
   ],
-  Tools: ["Docker", "Git", "GCP", "AWS", "PostgreSQL", "MongoDB", "Linux", "Figma"],
+  "Tools & Infrastructure": [
+    "Docker",
+    "Git",
+    "PostgreSQL",
+    "MySQL",
+    "Maven",
+    "GCP",
+    "AWS",
+    "Linux",
+    "Figma",
+  ],
 };
 
 /* ─────────────────────────── components ─────────────────────────── */
@@ -366,9 +433,7 @@ function EducationSection() {
           title="Education"
         />
 
-        <motion.div
-          variants={fadeSlide}
-          custom={1}
+        <div
           className="glass glass-hover rounded-2xl p-6 md:p-8 max-w-2xl transition-all"
         >
           <div className="flex items-start gap-4">
@@ -391,7 +456,7 @@ function EducationSection() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </Section>
   );
@@ -412,11 +477,9 @@ function ExperienceSection() {
           <div className="absolute left-4 md:left-5 top-0 bottom-0 w-px bg-[#003366]/10" />
 
           <div className="space-y-4">
-            {EXPERIENCES.map((exp, i) => (
-              <motion.div
+            {EXPERIENCES.map((exp) => (
+              <div
                 key={exp.org}
-                variants={fadeSlide}
-                custom={i + 1}
                 className="relative pl-10 md:pl-14"
               >
                 {/* Dot on timeline */}
@@ -455,7 +518,7 @@ function ExperienceSection() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -464,28 +527,90 @@ function ExperienceSection() {
   );
 }
 
-/* ── Project Carousel ── */
+/* ── Project Views ── */
+
+// Collect all unique stack tags for filtering
+const ALL_TAGS = Array.from(
+  new Set(PROJECTS.flatMap((p) => p.stack)),
+).sort();
+
 const carouselVariants = {
   enter: (dir: number) => ({
-    x: dir > 0 ? 400 : -400,
+    x: dir > 0 ? 200 : -200,
     opacity: 0,
-    scale: 0.95,
+    scale: 0.97,
   }),
   center: {
     x: 0,
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
   },
   exit: (dir: number) => ({
-    x: dir < 0 ? 400 : -400,
+    x: dir < 0 ? 200 : -200,
     opacity: 0,
-    scale: 0.95,
-    transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const },
+    scale: 0.97,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <div className="glass glass-hover rounded-2xl p-6 flex flex-col h-full transition-all group">
+      {/* Header */}
+      <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
+        <h3 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-[#003366] transition-colors">
+          {project.title}
+        </h3>
+        {project.badge && (
+          <span className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200/60 text-amber-700 text-[11px] font-semibold whitespace-nowrap">
+            <Award size={11} />
+            {project.badge}
+          </span>
+        )}
+      </div>
+
+      {/* Description */}
+      <p className="text-sm text-slate-500 leading-relaxed mb-4 flex-1 line-clamp-3">
+        {project.description}
+      </p>
+
+      {/* Stack */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {project.stack.map((t) => (
+          <span
+            key={t}
+            className="px-2 py-0.5 rounded-md bg-[#003366]/5 text-[#003366] text-[11px] font-mono font-medium"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+
+      {/* GitHub link */}
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 text-sm font-medium text-[#003366] hover:text-[#004a99] transition-colors group/link w-fit"
+      >
+        <Github size={14} />
+        View on GitHub
+        <ChevronRight
+          size={13}
+          className="group-hover/link:translate-x-0.5 transition-transform"
+        />
+      </a>
+    </div>
+  );
+}
+
 function ProjectsSection() {
+  const [view, setView] = useState<"carousel" | "tiles">("carousel");
+  const [search, setSearch] = useState("");
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+
+  // ── Carousel state ──
   const [[activeIndex, direction], setPage] = useState([0, 0]);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -499,13 +624,16 @@ function ProjectsSection() {
     [],
   );
 
-  // Auto-play
   useEffect(() => {
+    if (view !== "carousel") {
+      if (timerRef.current) clearInterval(timerRef.current);
+      return;
+    }
     timerRef.current = setInterval(() => paginate(1), 5000);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [paginate]);
+  }, [paginate, view]);
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -530,114 +658,215 @@ function ProjectsSection() {
     resetTimer();
   }, [paginate, resetTimer]);
 
+  // ── Tiles filtering ──
+  const toggleFilter = useCallback((tag: string) => {
+    setActiveFilters((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+  }, []);
+
+  const filteredProjects = PROJECTS.filter((p) => {
+    const q = search.toLowerCase();
+    const matchesSearch =
+      !q ||
+      p.title.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      p.stack.some((s) => s.toLowerCase().includes(q));
+    const matchesFilter =
+      activeFilters.length === 0 ||
+      activeFilters.some((f) => p.stack.includes(f));
+    return matchesSearch && matchesFilter;
+  });
+
   const project = PROJECTS[activeIndex];
 
   return (
     <Section id="projects" className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionHeading icon={<Code2 size={20} />} title="Featured Projects" />
+        {/* Header row with title + view toggle */}
+        <div className="flex items-end justify-between gap-4 mb-10 flex-wrap">
+          <SectionHeading icon={<Code2 size={20} />} title="Featured Projects" />
 
-        {/* Carousel container */}
-        <div className="relative">
-          {/* Card viewport */}
-          <div className="overflow-hidden rounded-2xl min-h-[320px] md:min-h-[280px]">
-            <AnimatePresence initial={false} custom={direction} mode="wait">
-              <motion.div
-                key={activeIndex}
-                custom={direction}
-                variants={carouselVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.12}
-                onDragEnd={(_, info) => {
-                  if (info.offset.x < -80) { handleNext(); }
-                  else if (info.offset.x > 80) { handlePrev(); }
-                }}
-                className="glass rounded-2xl p-7 md:p-9 flex flex-col cursor-grab active:cursor-grabbing"
-              >
-                {/* Header */}
-                <div className="flex items-start justify-between gap-3 mb-4 flex-wrap">
-                  <h3 className="text-xl md:text-2xl font-bold text-slate-900">
-                    {project.title}
-                  </h3>
-                  {project.badge && (
-                    <span className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/60 text-amber-700 text-xs font-semibold whitespace-nowrap">
-                      <Award size={12} />
-                      {project.badge}
-                    </span>
-                  )}
-                </div>
-
-                {/* Description */}
-                <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-5 flex-1">
-                  {project.description}
-                </p>
-
-                {/* Stack */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.stack.map((t) => (
-                    <span
-                      key={t}
-                      className="px-2.5 py-1 rounded-lg bg-[#003366]/5 text-[#003366] text-xs font-mono font-medium"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                {/* GitHub link */}
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[#003366] hover:text-[#004a99] transition-colors group/link w-fit"
-                >
-                  <Github size={15} />
-                  View on GitHub
-                  <ChevronRight
-                    size={14}
-                    className="group-hover/link:translate-x-0.5 transition-transform"
-                  />
-                </a>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Navigation arrows */}
-          <button
-            onClick={handlePrev}
-            aria-label="Previous project"
-            className="absolute top-1/2 -translate-y-1/2 -left-3 md:-left-5 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-600 hover:text-[#003366] hover:bg-white/60 transition-all shadow-md"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <button
-            onClick={handleNext}
-            aria-label="Next project"
-            className="absolute top-1/2 -translate-y-1/2 -right-3 md:-right-5 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-600 hover:text-[#003366] hover:bg-white/60 transition-all shadow-md"
-          >
-            <ChevronRight size={18} />
-          </button>
-
-          {/* Dot indicators */}
-          <div className="flex items-center justify-center gap-2 mt-6">
-            {PROJECTS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goTo(i)}
-                aria-label={`Go to project ${i + 1}`}
-                className={`rounded-full transition-all duration-300 ${
-                  i === activeIndex
-                    ? "w-8 h-2.5 bg-[#003366]"
-                    : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
-                }`}
-              />
-            ))}
+          {/* View toggle */}
+          <div className="flex items-center gap-1 glass rounded-xl p-1 mb-10">
+            <button
+              onClick={() => setView("carousel")}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                view === "carousel"
+                  ? "bg-[#003366] text-white shadow-sm"
+                  : "text-slate-500 hover:text-[#003366] hover:bg-white/40"
+              }`}
+            >
+              <Layers size={14} />
+              Carousel
+            </button>
+            <button
+              onClick={() => setView("tiles")}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                view === "tiles"
+                  ? "bg-[#003366] text-white shadow-sm"
+                  : "text-slate-500 hover:text-[#003366] hover:bg-white/40"
+              }`}
+            >
+              <LayoutGrid size={14} />
+              Tiles
+            </button>
           </div>
         </div>
+
+        {/* ── Carousel View ── */}
+        {view === "carousel" && (
+          <div className="relative">
+            <div className="overflow-hidden rounded-2xl min-h-[320px] md:min-h-[280px]">
+              <AnimatePresence initial={false} custom={direction} mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  custom={direction}
+                  variants={carouselVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.12}
+                  onDragEnd={(_, info) => {
+                    if (info.offset.x < -80) handleNext();
+                    else if (info.offset.x > 80) handlePrev();
+                  }}
+                  className="glass rounded-2xl p-7 md:p-9 flex flex-col cursor-grab active:cursor-grabbing"
+                >
+                  <div className="flex items-start justify-between gap-3 mb-4 flex-wrap">
+                    <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+                      {project.title}
+                    </h3>
+                    {project.badge && (
+                      <span className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/60 text-amber-700 text-xs font-semibold whitespace-nowrap">
+                        <Award size={12} />
+                        {project.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-5 flex-1">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.stack.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2.5 py-1 rounded-lg bg-[#003366]/5 text-[#003366] text-xs font-mono font-medium"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-[#003366] hover:text-[#004a99] transition-colors group/link w-fit"
+                  >
+                    <Github size={15} />
+                    View on GitHub
+                    <ChevronRight
+                      size={14}
+                      className="group-hover/link:translate-x-0.5 transition-transform"
+                    />
+                  </a>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Arrows */}
+            <button
+              onClick={handlePrev}
+              aria-label="Previous project"
+              className="absolute top-1/2 -translate-y-1/2 -left-3 md:-left-5 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-600 hover:text-[#003366] hover:bg-white/60 transition-all shadow-md"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={handleNext}
+              aria-label="Next project"
+              className="absolute top-1/2 -translate-y-1/2 -right-3 md:-right-5 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-600 hover:text-[#003366] hover:bg-white/60 transition-all shadow-md"
+            >
+              <ChevronRight size={18} />
+            </button>
+
+            {/* Dots */}
+            <div className="flex items-center justify-center gap-2 mt-6">
+              {PROJECTS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  aria-label={`Go to project ${i + 1}`}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === activeIndex
+                      ? "w-8 h-2.5 bg-[#003366]"
+                      : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── Tiles View ── */}
+        {view === "tiles" && (
+          <div>
+            {/* Search bar */}
+            <div className="relative max-w-md mb-5">
+              <Search
+                size={16}
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+              />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search projects..."
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl glass text-sm text-slate-700 placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#003366]/20 transition-shadow"
+              />
+            </div>
+
+            {/* Filter chips */}
+            <div className="flex flex-wrap gap-1.5 mb-6">
+              {activeFilters.length > 0 && (
+                <button
+                  onClick={() => setActiveFilters([])}
+                  className="px-3 py-1 rounded-lg text-xs font-medium bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
+                >
+                  Clear all
+                </button>
+              )}
+              {ALL_TAGS.map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => toggleFilter(tag)}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-mono font-medium transition-all ${
+                    activeFilters.includes(tag)
+                      ? "bg-[#003366] text-white"
+                      : "bg-[#003366]/5 text-[#003366] hover:bg-[#003366]/15"
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+
+            {/* Grid */}
+            {filteredProjects.length > 0 ? (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredProjects.map((p) => (
+                  <ProjectCard key={p.title} project={p} />
+                ))}
+              </div>
+            ) : (
+              <div className="glass rounded-2xl p-12 text-center">
+                <p className="text-slate-400 text-sm">No projects match your search or filters.</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </Section>
   );
@@ -653,11 +882,9 @@ function SkillsSection() {
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {Object.entries(SKILLS).map(([category, items], ci) => (
-            <motion.div
+          {Object.entries(SKILLS).map(([category, items]) => (
+            <div
               key={category}
-              variants={fadeSlide}
-              custom={ci + 1}
               className="glass glass-hover rounded-2xl p-6 transition-all"
             >
               <h3 className="text-sm font-bold text-[#003366] uppercase tracking-wider mb-4">
@@ -673,7 +900,7 @@ function SkillsSection() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
