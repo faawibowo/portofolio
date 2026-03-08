@@ -21,6 +21,7 @@ import {
   Search,
   LayoutGrid,
   Layers,
+  FileDown,
 } from "lucide-react";
 import Background from "@/components/Background";
 
@@ -406,6 +407,14 @@ function HeroSection() {
             >
               <Mail size={16} />
               Email
+            </a>
+            <a
+              href="/CV_MUHAMMAD%20FARREL.pdf"
+              download="CV_Muhammad_Farrel_Wibowo.pdf"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#003366] text-white text-sm font-medium hover:bg-[#004a99] transition-colors shadow-sm"
+            >
+              <FileDown size={16} />
+              Download CV
             </a>
           </motion.div>
         </motion.div>
