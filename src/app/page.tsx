@@ -217,7 +217,7 @@ const EXPERIENCES: Experience[] = [
     tags: ["E-Commerce", "Full-Stack", "Product"],
   },
   {
-    role: "Head of Operations",
+    role: "Head of Operations Kroyokeanjes",
     org: "ITB JAZZ",
     period: "2024 — Present",
     description:
