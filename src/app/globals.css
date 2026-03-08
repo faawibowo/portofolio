@@ -1,26 +1,78 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ── Custom Theme Tokens ── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-itb-navy: #003366;
+  --color-itb-navy-light: #004a99;
+  --color-itb-navy-dark: #002244;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base Styles ── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  color: #334155; /* slate-700 */
+  background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 40%, #e8edf5 70%, #f8fafc 100%);
+  min-height: 100vh;
+}
+
+/* ── Glassmorphism Utilities ── */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.50);
+  border-left: 1px solid rgba(255, 255, 255, 0.50);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 8px 32px rgba(0, 51, 102, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.40);
+  box-shadow:
+    0 16px 48px rgba(0, 51, 102, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.50);
+  border-top-color: rgba(255, 255, 255, 0.60);
+  border-left-color: rgba(255, 255, 255, 0.60);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.30);
+  box-shadow:
+    0 4px 24px rgba(0, 51, 102, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.40);
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(0, 51, 102, 0.15);
+  color: #003366;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 51, 102, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 51, 102, 0.35);
 }
